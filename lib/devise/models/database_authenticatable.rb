@@ -69,7 +69,7 @@ module Devise
 
       # Verifies whether a password (ie from sign in) is the user password.
       def valid_password?(password)
-        Devise::Encryptor.compare(self.class, encrypted_password, password)
+        Devise::PasswordEncryptor.compare(self.class, encrypted_password, password)
       end
 
       # Set password and password confirmation to nil
@@ -202,7 +202,7 @@ module Devise
       # See https://github.com/heartcombo/devise-encryptable for examples
       # of other hashing engines.
       def password_digest(password)
-        Devise::Encryptor.digest(self.class, password)
+        Devise::PasswordEncryptor.digest(self.class, password)
       end
 
       if Devise.activerecord51?
