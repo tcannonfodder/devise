@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'devise/strategies/password_authenticatable'
+require 'devise/strategies/authenticatable'
 
 module Devise
   module Strategies
@@ -8,7 +8,7 @@ module Devise
     # to verify whether there is a cookie with the remember token, and to
     # recreate the user from this cookie if it exists. Must be called *before*
     # authenticatable.
-    class Rememberable < PasswordAuthenticatable
+    class Rememberable < Authenticatable
       # A valid strategy for rememberable needs a remember token in the cookies.
       def valid?
         @remember_cookie = nil
