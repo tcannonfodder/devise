@@ -336,10 +336,10 @@ For the list of permitted scalars, and how to declare permitted keys in nested h
 
 https://github.com/rails/strong_parameters#nested-parameters
 
-If you have multiple Devise models, you may want to set up a different parameter sanitizer per model. In this case, we recommend inheriting from `Devise::ParameterSanitizer` and adding your own logic:
+If you have multiple Devise models, you may want to set up a different parameter sanitizer per model. In this case, we recommend inheriting from `Devise::PasswordParameterSanitizer` and adding your own logic:
 
 ```ruby
-class User::ParameterSanitizer < Devise::ParameterSanitizer
+class User::PasswordParameterSanitizer < Devise::PasswordParameterSanitizer
   def initialize(*)
     super
     permit(:sign_up, keys: [:username, :email])
@@ -355,7 +355,7 @@ class ApplicationController < ActionController::Base
 
   def devise_parameter_sanitizer
     if resource_class == User
-      User::ParameterSanitizer.new(User, :user, params)
+      User::PasswordParameterSanitizer.new(User, :user, params)
     else
       super # Use the default one
     end

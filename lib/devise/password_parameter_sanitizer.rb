@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module Devise
-  # The +ParameterSanitizer+ deals with permitting specific parameters values
+  # The +PasswordParameterSanitizer+ deals with permitting specific parameters values
   # for each +Devise+ scope in the application.
   #
   # The sanitizer knows about Devise default parameters (like +password+ and
@@ -34,7 +34,7 @@ module Devise
   #        user.permit(newsletter_preferences: [])
   #      end
   #    end
-  class ParameterSanitizer
+  class PasswordParameterSanitizer
     DEFAULT_PERMITTED_ATTRIBUTES = {
       sign_in: [:password, :remember_me],
       sign_up: [:password, :password_confirmation],

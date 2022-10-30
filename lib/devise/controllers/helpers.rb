@@ -156,7 +156,7 @@ module Devise
       # lib/devise/parameter_sanitizer.rb for more info. Override this
       # method in your application controller to use your own parameter sanitizer.
       def devise_parameter_sanitizer
-        @devise_parameter_sanitizer ||= Devise::ParameterSanitizer.new(resource_class, resource_name, params)
+        @devise_parameter_sanitizer ||= Devise::PasswordParameterSanitizer.new(resource_class, resource_name, params)
       end
 
       # Tell warden that params authentication is allowed for that specific page.
