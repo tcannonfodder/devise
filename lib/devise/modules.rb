@@ -17,7 +17,7 @@ Devise.with_options model: true do |d|
   routes = [nil, :new, :edit]
   d.add_module :recoverable,  controller: :passwords,     route: { password: routes }
   d.add_module :registerable, controller: :registrations, route: { registration: (routes << :cancel) }
-  d.add_module :validatable
+  d.add_module :password_validatable
 
   # The ones which can sign out after
   routes = [nil, :new]

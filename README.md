@@ -19,7 +19,7 @@ It's composed of 10 modules:
 * [Rememberable](http://www.rubydoc.info/github/heartcombo/devise/main/Devise/Models/Rememberable): manages generating and clearing a token for remembering the user from a saved cookie.
 * [Trackable](http://www.rubydoc.info/github/heartcombo/devise/main/Devise/Models/Trackable): tracks sign in count, timestamps and IP address.
 * [Timeoutable](http://www.rubydoc.info/github/heartcombo/devise/main/Devise/Models/Timeoutable): expires sessions that have not been active in a specified period of time.
-* [Validatable](http://www.rubydoc.info/github/heartcombo/devise/main/Devise/Models/Validatable): provides validations of email and password. It's optional and can be customized, so you're able to define your own validations.
+* [PasswordValidatable](http://www.rubydoc.info/github/heartcombo/devise/main/Devise/Models/PasswordValidatable): provides validations of email and password. It's optional and can be customized, so you're able to define your own validations.
 * [Lockable](http://www.rubydoc.info/github/heartcombo/devise/main/Devise/Models/Lockable): locks an account after a specified number of failed sign-in attempts. Can unlock via email or after a specified time period.
 
 ## Table of Contents

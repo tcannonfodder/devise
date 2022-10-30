@@ -7,7 +7,7 @@ class Configurable < User
 end
 
 class WithValidation < Admin
-  devise :database_authenticatable, :validatable, password_length: 2..6
+  devise :database_authenticatable, :password_validatable, password_length: 2..6
 end
 
 class UserWithValidation < User
@@ -27,7 +27,7 @@ class UserWithVirtualAttributes < User
 end
 
 class Several < Admin
-  devise :validatable
+  devise :password_validatable
   devise :lockable
 end
 
