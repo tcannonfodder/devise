@@ -28,4 +28,4 @@ module Devise
   end
 end
 
-Warden::Strategies.add(:database_authenticatable, Devise::Strategies::DatabasePasswordAuthenticatable)
+Warden::Strategies.add(:database_password_authenticatable, Devise::Strategies::DatabasePasswordAuthenticatable)

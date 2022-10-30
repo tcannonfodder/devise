@@ -70,7 +70,7 @@ Devise.setup do |config|
   # The realm used in Http Basic Authentication. "Application" by default.
   # config.http_authentication_realm = "Application"
 
-  # ==> Configuration for :database_authenticatable
+  # ==> Configuration for :database_password_authenticatable
   # For bcrypt, this is the cost for hashing the password and defaults to 10. If
   # using other encryptors, it sets how many times you want the password re-encrypted.
   config.stretches = Rails.env.test? ? 1 : 10

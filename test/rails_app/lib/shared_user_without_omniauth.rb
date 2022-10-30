@@ -4,7 +4,7 @@ module SharedUserWithoutOmniauth
   extend ActiveSupport::Concern
 
   included do
-    devise :database_authenticatable, :confirmable, :lockable, :recoverable,
+    devise :database_password_authenticatable, :confirmable, :lockable, :recoverable,
       :registerable, :rememberable, :timeoutable,
       :trackable, :password_validatable, reconfirmable: false
   end

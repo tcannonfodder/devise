@@ -146,7 +146,7 @@ module Devise
       # The following example uses Active Job's `deliver_later` :
       #
       #     class User
-      #       devise :database_authenticatable, :confirmable
+      #       devise :database_password_authenticatable, :confirmable
       #
       #       after_commit :send_pending_devise_notifications
       #

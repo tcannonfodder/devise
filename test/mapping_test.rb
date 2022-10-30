@@ -52,8 +52,8 @@ class MappingTest < ActiveSupport::TestCase
   end
 
   test 'has strategies depending on the model declaration' do
-    assert_equal [:rememberable, :database_authenticatable], Devise.mappings[:user].strategies
-    assert_equal [:database_authenticatable], Devise.mappings[:admin].strategies
+    assert_equal [:rememberable, :database_password_authenticatable], Devise.mappings[:user].strategies
+    assert_equal [:database_password_authenticatable], Devise.mappings[:admin].strategies
   end
 
   test 'has no input strategies depending on the model declaration' do

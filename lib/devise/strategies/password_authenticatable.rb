@@ -166,7 +166,7 @@ module Devise
         true
       end
 
-      # Holds the authenticatable name for this class. Devise::Strategies::DatabaseAuthenticatable
+      # Holds the authenticatable name for this class. Devise::Strategies::DatabasePasswordAuthenticatable
       # becomes simply :database.
       def authenticatable_name
         @authenticatable_name ||=

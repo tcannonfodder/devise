@@ -264,7 +264,7 @@ member_session
 The Devise method in your models also accepts some options to configure its modules. For example, you can choose the cost of the hashing algorithm with:
 
 ```ruby
-devise :database_authenticatable, :registerable, :confirmable, :recoverable, stretches: 13
+devise :database_password_authenticatable, :registerable, :confirmable, :recoverable, stretches: 13
 ```
 
 Besides `:stretches`, you can define `:pepper`, `:encryptor`, `:confirm_within`, `:remember_for`, `:timeout_in`, `:unlock_in` among other options. For more details, see the initializer file that was created when you invoked the "devise:install" generator described above. This file is usually located at `/config/initializers/devise.rb`.
@@ -647,7 +647,7 @@ create_table :admins do |t|
 end
 
 # Inside your Admin model
-devise :database_authenticatable, :timeoutable
+devise :database_password_authenticatable, :timeoutable
 
 # Inside your routes
 devise_for :admins

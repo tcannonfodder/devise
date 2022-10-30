@@ -70,7 +70,7 @@ module Devise
 
     # Include the chosen devise modules in your model:
     #
-    #   devise :database_authenticatable, :confirmable, :recoverable
+    #   devise :database_password_authenticatable, :confirmable, :recoverable
     #
     # You can also give any of the devise configuration values in form of a hash,
     # with specific values for this model. Please check your Devise initializer
