@@ -84,7 +84,7 @@ module Devise
       end
 
       devise_modules_hook! do
-        include Devise::Models::Authenticatable
+        include Devise::Models::PasswordAuthenticatable
 
         selected_modules.each do |m|
           mod = Devise::Models.const_get(m.to_s.classify)
@@ -118,4 +118,4 @@ module Devise
   end
 end
 
-require 'devise/models/authenticatable'
+require 'devise/models/password_authenticatable'

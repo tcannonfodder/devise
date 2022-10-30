@@ -32,7 +32,7 @@ class SerializableTest < ActiveSupport::TestCase
   end
 
   test 'constant `BLACKLIST_FOR_SERIALIZATION` is deprecated' do
-    assert_deprecated { Devise::Models::Authenticatable::BLACKLIST_FOR_SERIALIZATION }
+    assert_deprecated { Devise::Models::PasswordAuthenticatable::BLACKLIST_FOR_SERIALIZATION }
   end
 
   def assert_key(key, subject)

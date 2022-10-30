@@ -6,11 +6,11 @@ require 'devise/rails/deprecated_constant_accessor'
 
 module Devise
   module Models
-    # Authenticatable module. Holds common settings for authentication.
+    # PasswordAuthenticatable module. Holds common settings for authentication.
     #
     # == Options
     #
-    # Authenticatable adds the following options to +devise+:
+    # PasswordAuthenticatable adds the following options to +devise+:
     #
     #   * +authentication_keys+: parameters used for authentication. By default [:email].
     #
@@ -53,7 +53,7 @@ module Devise
     #     special_condition_is_valid? ? super : :special_condition_is_not_valid
     #   end
     #
-    module Authenticatable
+    module PasswordAuthenticatable
       extend ActiveSupport::Concern
 
       UNSAFE_ATTRIBUTES_FOR_SERIALIZATION = [:encrypted_password, :reset_password_token, :reset_password_sent_at,
@@ -62,7 +62,7 @@ module Devise
         :remember_token, :unconfirmed_email, :failed_attempts, :unlock_token, :locked_at]
 
       include Devise::DeprecatedConstantAccessor
-      deprecate_constant "BLACKLIST_FOR_SERIALIZATION", "Devise::Models::Authenticatable::UNSAFE_ATTRIBUTES_FOR_SERIALIZATION"
+      deprecate_constant "BLACKLIST_FOR_SERIALIZATION", "Devise::Models::PasswordAuthenticatable::UNSAFE_ATTRIBUTES_FOR_SERIALIZATION"
 
       included do
         class_attribute :devise_modules, instance_writer: false
