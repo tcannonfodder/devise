@@ -134,11 +134,11 @@ class Devise::RegistrationsController < DeviseController
   end
 
   def sign_up_params
-    devise_parameter_sanitizer.sanitize(:sign_up)
+    devise_password_parameter_sanitizer.sanitize(:sign_up)
   end
 
   def account_update_params
-    devise_parameter_sanitizer.sanitize(:account_update)
+    devise_password_parameter_sanitizer.sanitize(:account_update)
   end
 
   def translation_scope

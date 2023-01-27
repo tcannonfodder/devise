@@ -292,7 +292,7 @@ class ApplicationController < ActionController::Base
   protected
 
   def configure_permitted_parameters
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:username])
+    devise_password_parameter_sanitizer.permit(:sign_up, keys: [:username])
   end
 end
 ```
@@ -306,7 +306,7 @@ class ApplicationController < ActionController::Base
   protected
 
   def configure_permitted_parameters
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:first_name, :last_name, address_attributes: [:country, :state, :city, :area, :postal_code]])
+    devise_password_parameter_sanitizer.permit(:sign_up, keys: [:first_name, :last_name, address_attributes: [:country, :state, :city, :area, :postal_code]])
   end
 end
 ```
@@ -317,7 +317,7 @@ To permit simple scalar values for username and email, use this
 
 ```ruby
 def configure_permitted_parameters
-  devise_parameter_sanitizer.permit(:sign_in) do |user_params|
+  devise_password_parameter_sanitizer.permit(:sign_in) do |user_params|
     user_params.permit(:username, :email)
   end
 end
@@ -327,7 +327,7 @@ If you have some checkboxes that express the roles a user may take on registrati
 
 ```ruby
 def configure_permitted_parameters
-  devise_parameter_sanitizer.permit(:sign_up) do |user_params|
+  devise_password_parameter_sanitizer.permit(:sign_up) do |user_params|
     user_params.permit({ roles: [] }, :email, :password, :password_confirmation)
   end
 end
@@ -353,7 +353,7 @@ And then configure your controllers to use it:
 class ApplicationController < ActionController::Base
   protected
 
-  def devise_parameter_sanitizer
+  def devise_password_parameter_sanitizer
     if resource_class == User
       User::PasswordParameterSanitizer.new(User, :user, params)
     else

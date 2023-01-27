@@ -21,7 +21,7 @@ module Devise
   #      def configure_permitted_parameters
   #        # Permit the `subscribe_newsletter` parameter along with the other
   #        # sign up parameters.
-  #        devise_parameter_sanitizer.permit(:sign_up, keys: [:subscribe_newsletter])
+  #        devise_password_parameter_sanitizer.permit(:sign_up, keys: [:subscribe_newsletter])
   #      end
   #    end
   #
@@ -30,7 +30,7 @@ module Devise
   # permitted in your controller.
   #
   #    def configure_permitted_parameters
-  #      devise_parameter_sanitizer.permit(:sign_up) do |user|
+  #      devise_password_parameter_sanitizer.permit(:sign_up) do |user|
   #        user.permit(newsletter_preferences: [])
   #      end
   #    end
@@ -62,7 +62,7 @@ module Devise
     # === Examples
     #
     #    # Inside the `RegistrationsController#create` action.
-    #    resource = build_resource(devise_parameter_sanitizer.sanitize(:sign_up))
+    #    resource = build_resource(devise_password_parameter_sanitizer.sanitize(:sign_up))
     #    resource.save
     #
     # Returns an +ActiveSupport::HashWithIndifferentAccess+ with the permitted
@@ -94,14 +94,14 @@ module Devise
     # === Examples
     #
     #   # Adding new parameters to be permitted in the `sign_up` action.
-    #   devise_parameter_sanitizer.permit(:sign_up, keys: [:subscribe_newsletter])
+    #   devise_password_parameter_sanitizer.permit(:sign_up, keys: [:subscribe_newsletter])
     #
     #   # Removing the `password` parameter from the `account_update` action.
-    #   devise_parameter_sanitizer.permit(:account_update, except: [:password])
+    #   devise_password_parameter_sanitizer.permit(:account_update, except: [:password])
     #
     #   # Using the block form to completely override how we permit the
     #   # parameters for the `sign_up` action.
-    #   devise_parameter_sanitizer.permit(:sign_up) do |user|
+    #   devise_password_parameter_sanitizer.permit(:sign_up) do |user|
     #     user.permit(:email, :password, :password_confirmation)
     #   end
     #
@@ -166,7 +166,7 @@ module Devise
         If you want to define a new set of parameters to be sanitized use the
         `permit` method first:
 
-          devise_parameter_sanitizer.permit(:#{action}, keys: [:param1, :param2, :param3])
+          devise_password_parameter_sanitizer.permit(:#{action}, keys: [:param1, :param2, :param3])
       MESSAGE
     end
   end
