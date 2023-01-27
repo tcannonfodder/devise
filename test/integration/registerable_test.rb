@@ -2,13 +2,13 @@
 
 require 'test_helper'
 
-class RegistrationTest < Devise::IntegrationTest
+class PasswordRegistrationTest < Devise::IntegrationTest
 
   test 'a guest admin should be able to sign in successfully' do
     get new_admin_session_path
     click_link 'Sign up'
 
-    assert_template 'registrations/new'
+    assert_template 'password_registrations/new'
 
     fill_in 'email', with: 'new_user@test.com'
     fill_in 'password', with: 'new_user123'
@@ -24,7 +24,7 @@ class RegistrationTest < Devise::IntegrationTest
   end
 
   test 'a guest admin should be able to sign in and be redirected to a custom location' do
-    Devise::RegistrationsController.any_instance.stubs(:after_sign_up_path_for).returns("/?custom=1")
+    Devise::PasswordRegistrationsController.any_instance.stubs(:after_sign_up_path_for).returns("/?custom=1")
     get new_admin_session_path
     click_link 'Sign up'
 
@@ -85,7 +85,7 @@ class RegistrationTest < Devise::IntegrationTest
   end
 
   test 'a guest user should be blocked by confirmation and redirected to a custom path' do
-    Devise::RegistrationsController.any_instance.stubs(:after_inactive_sign_up_path_for).returns("/?custom=1")
+    Devise::PasswordRegistrationsController.any_instance.stubs(:after_inactive_sign_up_path_for).returns("/?custom=1")
     get new_user_registration_path
 
     fill_in 'email', with: 'new_user@test.com'
@@ -109,7 +109,7 @@ class RegistrationTest < Devise::IntegrationTest
     fill_in 'password confirmation', with: 'new_user321'
     click_button 'Sign up'
 
-    assert_template 'registrations/new'
+    assert_template 'password_registrations/new'
     assert_have_selector '#error_explanation'
     assert_contain "Email is invalid"
     assert_contain "Password confirmation doesn't match Password"
@@ -220,7 +220,7 @@ class RegistrationTest < Devise::IntegrationTest
     fill_in 'current password', with: 'invalid'
     click_button 'Update'
 
-    assert_template 'registrations/edit'
+    assert_template 'password_registrations/edit'
     assert_contain 'user@test.com'
     assert_have_selector 'form input[value="user.new@example.com"]'
 
@@ -336,7 +336,7 @@ class RegistrationTest < Devise::IntegrationTest
   end
 end
 
-class ReconfirmableRegistrationTest < Devise::IntegrationTest
+class ReconfirmablePasswordRegistrationTest < Devise::IntegrationTest
   test 'a signed in admin should see a more appropriate flash message when editing their account if reconfirmable is enabled' do
     sign_in_as_admin
     get edit_admin_registration_path

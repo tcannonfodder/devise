@@ -280,8 +280,8 @@ When you customize your own views, you may end up adding new attributes to forms
 There are just three actions in Devise that allow any set of parameters to be passed down to the model, therefore requiring sanitization. Their names and default permitted parameters are:
 
 * `sign_in` (`Devise::SessionsController#create`) - Permits only the authentication keys (like `email`)
-* `sign_up` (`Devise::RegistrationsController#create`) - Permits authentication keys plus `password` and `password_confirmation`
-* `account_update` (`Devise::RegistrationsController#update`) - Permits authentication keys plus `password`, `password_confirmation` and `current_password`
+* `sign_up` (`Devise::PasswordRegistrationsController#create`) - Permits authentication keys plus `password` and `password_confirmation`
+* `account_update` (`Devise::PasswordRegistrationsController#update`) - Permits authentication keys plus `password`, `password_confirmation` and `current_password`
 
 In case you want to permit additional parameters (the lazy way™), you can do so using a simple before action in your `ApplicationController`:
 
