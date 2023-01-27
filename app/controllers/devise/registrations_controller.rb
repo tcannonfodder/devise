@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Devise::RegistrationsController < Devise::PasswordRegistrationsController
   prepend_view_path("password_registrations")
 
