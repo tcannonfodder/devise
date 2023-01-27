@@ -4,7 +4,7 @@ module SharedUser
   extend ActiveSupport::Concern
 
   included do
-    devise :database_password_authenticatable, :confirmable, :lockable, :recoverable,
+    devise :database_password_authenticatable, :confirmable, :lockable, :password_recoverable,
            :registerable, :rememberable, :timeoutable,
            :trackable, :password_validatable, :omniauthable, password_length: 7..72,
            reconfirmable: false

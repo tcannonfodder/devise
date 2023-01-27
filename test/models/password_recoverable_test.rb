@@ -2,7 +2,7 @@
 
 require 'test_helper'
 
-class RecoverableTest < ActiveSupport::TestCase
+class PasswordRecoverableTest < ActiveSupport::TestCase
 
   def setup
     setup_mailer
@@ -240,7 +240,7 @@ class RecoverableTest < ActiveSupport::TestCase
     assert_equal [
       :reset_password_sent_at,
       :reset_password_token
-    ], Devise::Models::Recoverable.required_fields(User)
+    ], Devise::Models::PasswordRecoverable.required_fields(User)
   end
 
   test 'should return a user based on the raw token' do

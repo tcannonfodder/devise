@@ -20,7 +20,7 @@ class ActiveRecordTest < ActiveSupport::TestCase
   end
 
   test 'can cherry pick modules' do
-    assert_include_modules Admin, :database_password_authenticatable, :registerable, :timeoutable, :recoverable, :lockable, :confirmable
+    assert_include_modules Admin, :database_password_authenticatable, :registerable, :timeoutable, :password_recoverable, :lockable, :confirmable
   end
 
   test 'validations options are not applied too late' do
@@ -36,12 +36,12 @@ class ActiveRecordTest < ActiveSupport::TestCase
   end
 
   test 'chosen modules are inheritable' do
-    assert_include_modules Inheritable, :database_password_authenticatable, :registerable, :timeoutable, :recoverable, :lockable, :confirmable
+    assert_include_modules Inheritable, :database_password_authenticatable, :registerable, :timeoutable, :password_recoverable, :lockable, :confirmable
   end
 
   test 'order of module inclusion' do
-    correct_module_order   = [:database_password_authenticatable, :recoverable, :registerable, :confirmable, :lockable, :timeoutable]
-    incorrect_module_order = [:database_password_authenticatable, :timeoutable, :registerable, :recoverable, :lockable, :confirmable]
+    correct_module_order   = [:database_password_authenticatable, :password_recoverable, :registerable, :confirmable, :lockable, :timeoutable]
+    incorrect_module_order = [:database_password_authenticatable, :timeoutable, :registerable, :password_recoverable, :lockable, :confirmable]
 
     assert_include_modules Admin, *incorrect_module_order
 

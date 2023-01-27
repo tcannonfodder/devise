@@ -109,13 +109,13 @@ class MappingTest < ActiveSupport::TestCase
     mapping = Devise.mappings[:user]
     assert mapping.authenticatable?
     assert mapping.confirmable?
-    assert mapping.recoverable?
+    assert mapping.password_recoverable?
     assert mapping.rememberable?
     assert mapping.registerable?
 
     mapping = Devise.mappings[:admin]
     assert mapping.authenticatable?
-    assert mapping.recoverable?
+    assert mapping.password_recoverable?
     assert mapping.lockable?
     refute mapping.omniauthable?
   end

@@ -7,14 +7,14 @@ module SharedUserWithoutEmail
     # NOTE: This is missing :validatable and :confirmable, as they both require
     # an email field at the moment. It is also missing :omniauthable because that
     # adds unnecessary complexity to the setup
-    devise :database_password_authenticatable, :lockable, :recoverable,
+    devise :database_password_authenticatable, :lockable, :password_recoverable,
            :registerable, :rememberable, :timeoutable,
            :trackable
   end
 
   # This test stub is a bit rubbish because it's tied very closely to the
   # implementation where we care about this one case. However, completely
-  # removing the email field breaks "recoverable" tests completely, so we are
+  # removing the email field breaks "password_recoverable" tests completely, so we are
   # just taking the approach here that "email" is something that is a not an
   # ActiveRecord field.
   def email_changed?
