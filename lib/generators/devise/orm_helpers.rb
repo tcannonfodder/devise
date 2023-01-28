@@ -8,7 +8,7 @@ module Devise
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_password_authenticatable, :registerable,
-         :password_recoverable, :rememberable, :validatable
+         :password_recoverable, :rememberable, :password_validatable
 
 CONTENT
         buffer
