@@ -10,11 +10,11 @@ require 'responders'
 
 module Devise
   autoload :Delegator,          'devise/delegator'
-  autoload :Encryptor,          'devise/encryptor'
+  autoload :PasswordEncryptor,  'devise/password_encryptor'
   autoload :FailureApp,         'devise/failure_app'
   autoload :OmniAuth,           'devise/omniauth'
   autoload :ParameterFilter,    'devise/parameter_filter'
-  autoload :ParameterSanitizer, 'devise/parameter_sanitizer'
+  autoload :PasswordParameterSanitizer, 'devise/password_parameter_sanitizer'
   autoload :TestHelpers,        'devise/test_helpers'
   autoload :TimeInflector,      'devise/time_inflector'
   autoload :TokenGenerator,     'devise/token_generator'

@@ -21,7 +21,7 @@ module Devise
     #   # creates a new token and send it with instructions about how to reset the password
     #   User.find(1).send_reset_password_instructions
     #
-    module Recoverable
+    module PasswordRecoverable
       extend ActiveSupport::Concern
 
       def self.required_fields(klass)

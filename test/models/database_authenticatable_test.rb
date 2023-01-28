@@ -4,7 +4,7 @@ require 'test_helper'
 require 'test_models'
 require 'digest/sha1'
 
-class DatabaseAuthenticatableTest < ActiveSupport::TestCase
+class DatabasePasswordAuthenticatableTest < ActiveSupport::TestCase
   def setup
     setup_mailer
   end
@@ -296,7 +296,7 @@ class DatabaseAuthenticatableTest < ActiveSupport::TestCase
     assert_equal [
       :encrypted_password,
       :email
-    ], Devise::Models::DatabaseAuthenticatable.required_fields(User)
+    ], Devise::Models::DatabasePasswordAuthenticatable.required_fields(User)
   end
 
   test 'required_fields should be encryptable_password and the login when the login is on authentication_keys' do
@@ -304,7 +304,7 @@ class DatabaseAuthenticatableTest < ActiveSupport::TestCase
       assert_equal [
         :encrypted_password,
         :login
-      ], Devise::Models::DatabaseAuthenticatable.required_fields(User)
+      ], Devise::Models::DatabasePasswordAuthenticatable.required_fields(User)
     end
   end
 end

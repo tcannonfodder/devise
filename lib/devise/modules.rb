@@ -6,7 +6,7 @@ Devise.with_options model: true do |d|
   # Strategies first
   d.with_options strategy: true do |s|
     routes = [nil, :new, :destroy]
-    s.add_module :database_authenticatable, controller: :sessions, route: { session: routes }
+    s.add_module :database_password_authenticatable, controller: :sessions, route: { session: routes }
     s.add_module :rememberable, no_input: true
   end
 
@@ -15,9 +15,9 @@ Devise.with_options model: true do |d|
 
   # Misc after
   routes = [nil, :new, :edit]
-  d.add_module :recoverable,  controller: :passwords,     route: { password: routes }
+  d.add_module :password_recoverable,  controller: :passwords,     route: { password: routes }
   d.add_module :registerable, controller: :registrations, route: { registration: (routes << :cancel) }
-  d.add_module :validatable
+  d.add_module :password_validatable
 
   # The ones which can sign out after
   routes = [nil, :new]

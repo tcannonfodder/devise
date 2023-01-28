@@ -61,7 +61,7 @@ Rails.application.initialize!
 DeviseCreateUsers.migrate(:up)
 
 class User < ActiveRecord::Base
-  devise :database_authenticatable
+  devise :database_password_authenticatable
 end
 
 Rails.application.routes.draw do

@@ -70,7 +70,7 @@ Devise.setup do |config|
   # The realm used in Http Basic Authentication. "Application" by default.
   # config.http_authentication_realm = "Application"
 
-  # ==> Configuration for :database_authenticatable
+  # ==> Configuration for :database_password_authenticatable
   # For bcrypt, this is the cost for hashing the password and defaults to 10. If
   # using other encryptors, it sets how many times you want the password re-encrypted.
   config.stretches = Rails.env.test? ? 1 : 10
@@ -129,7 +129,7 @@ Devise.setup do |config|
   # Time interval to unlock the account if :time is enabled as unlock_strategy.
   # config.unlock_in = 1.hour
 
-  # ==> Configuration for :recoverable
+  # ==> Configuration for :password_recoverable
   #
   # Defines which key will be used when recovering the password for an account
   # config.reset_password_keys = [:email]

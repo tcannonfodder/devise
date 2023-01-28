@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'devise/strategies/database_authenticatable'
+require 'devise/strategies/database_password_authenticatable'
 
 module Devise
   module Models
@@ -13,7 +13,7 @@ module Devise
     #
     # == Options
     #
-    # DatabaseAuthenticatable adds the following options to +devise+:
+    # DatabasePasswordAuthenticatable adds the following options to +devise+:
     #
     #   * +pepper+: a random string used to provide a more secure hash. Use
     #     `rails secret` to generate new keys.
@@ -28,7 +28,7 @@ module Devise
     #
     #    User.find(1).valid_password?('password123')         # returns true/false
     #
-    module DatabaseAuthenticatable
+    module DatabasePasswordAuthenticatable
       extend ActiveSupport::Concern
 
       included do
@@ -69,7 +69,7 @@ module Devise
 
       # Verifies whether a password (ie from sign in) is the user password.
       def valid_password?(password)
-        Devise::Encryptor.compare(self.class, encrypted_password, password)
+        Devise::PasswordEncryptor.compare(self.class, encrypted_password, password)
       end
 
       # Set password and password confirmation to nil
@@ -87,7 +87,7 @@ module Devise
       def update_with_password(params, *options)
         if options.present?
           ActiveSupport::Deprecation.warn <<-DEPRECATION.strip_heredoc
-            [Devise] The second argument of `DatabaseAuthenticatable#update_with_password`
+            [Devise] The second argument of `DatabasePasswordAuthenticatable#update_with_password`
             (`options`) is deprecated and it will be removed in the next major version.
             It was added to support a feature deprecated in Rails 4, so you can safely remove it
             from your code.
@@ -129,7 +129,7 @@ module Devise
       def update_without_password(params, *options)
         if options.present?
           ActiveSupport::Deprecation.warn <<-DEPRECATION.strip_heredoc
-            [Devise] The second argument of `DatabaseAuthenticatable#update_without_password`
+            [Devise] The second argument of `DatabasePasswordAuthenticatable#update_without_password`
             (`options`) is deprecated and it will be removed in the next major version.
             It was added to support a feature deprecated in Rails 4, so you can safely remove it
             from your code.
@@ -202,7 +202,7 @@ module Devise
       # See https://github.com/heartcombo/devise-encryptable for examples
       # of other hashing engines.
       def password_digest(password)
-        Devise::Encryptor.digest(self.class, password)
+        Devise::PasswordEncryptor.digest(self.class, password)
       end
 
       if Devise.activerecord51?
@@ -229,7 +229,7 @@ module Devise
         Devise::Models.config(self, :pepper, :stretches, :send_email_changed_notification, :send_password_change_notification)
 
         # We assume this method already gets the sanitized values from the
-        # DatabaseAuthenticatable strategy. If you are using this method on
+        # DatabasePasswordAuthenticatable strategy. If you are using this method on
         # your own, be sure to sanitize the conditions hash to only include
         # the proper fields.
         def find_for_database_authentication(conditions)

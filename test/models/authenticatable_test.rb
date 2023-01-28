@@ -4,7 +4,7 @@ require 'test_helper'
 
 class AuthenticatableTest < ActiveSupport::TestCase
   test 'required_fields should be an empty array' do
-    assert_equal [], Devise::Models::Validatable.required_fields(User)
+    assert_equal [], Devise::Models::PasswordValidatable.required_fields(User)
   end
 
   test 'find_first_by_auth_conditions allows custom filtering parameters' do

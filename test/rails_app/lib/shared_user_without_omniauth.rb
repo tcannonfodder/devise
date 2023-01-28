@@ -4,9 +4,9 @@ module SharedUserWithoutOmniauth
   extend ActiveSupport::Concern
 
   included do
-    devise :database_authenticatable, :confirmable, :lockable, :recoverable,
+    devise :database_password_authenticatable, :confirmable, :lockable, :password_recoverable,
       :registerable, :rememberable, :timeoutable,
-      :trackable, :validatable, reconfirmable: false
+      :trackable, :password_validatable, reconfirmable: false
   end
 
   def raw_confirmation_token

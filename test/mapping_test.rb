@@ -52,8 +52,8 @@ class MappingTest < ActiveSupport::TestCase
   end
 
   test 'has strategies depending on the model declaration' do
-    assert_equal [:rememberable, :database_authenticatable], Devise.mappings[:user].strategies
-    assert_equal [:database_authenticatable], Devise.mappings[:admin].strategies
+    assert_equal [:rememberable, :database_password_authenticatable], Devise.mappings[:user].strategies
+    assert_equal [:database_password_authenticatable], Devise.mappings[:admin].strategies
   end
 
   test 'has no input strategies depending on the model declaration' do
@@ -109,13 +109,13 @@ class MappingTest < ActiveSupport::TestCase
     mapping = Devise.mappings[:user]
     assert mapping.authenticatable?
     assert mapping.confirmable?
-    assert mapping.recoverable?
+    assert mapping.password_recoverable?
     assert mapping.rememberable?
     assert mapping.registerable?
 
     mapping = Devise.mappings[:admin]
     assert mapping.authenticatable?
-    assert mapping.recoverable?
+    assert mapping.password_recoverable?
     assert mapping.lockable?
     refute mapping.omniauthable?
   end
