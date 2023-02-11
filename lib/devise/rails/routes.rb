@@ -206,7 +206,7 @@ module ActionDispatch::Routing
     # overrides an out of the box Devise controller.
     # For example:
     #
-    #    class RegistrationsController < Devise::RegistrationsController
+    #    class RegistrationsController < Devise::PasswordRegistrationsController
     #      def update
     #         # do something different here
     #      end

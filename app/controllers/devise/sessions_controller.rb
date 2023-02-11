@@ -34,7 +34,7 @@ class Devise::SessionsController < DeviseController
   protected
 
   def sign_in_params
-    devise_parameter_sanitizer.sanitize(:sign_in)
+    devise_password_parameter_sanitizer.sanitize(:sign_in)
   end
 
   def serialize_options(resource)

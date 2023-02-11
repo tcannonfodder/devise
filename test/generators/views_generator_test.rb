@@ -43,10 +43,10 @@ class ViewsGeneratorTest < Rails::Generators::TestCase
 
 
   test "Assert only views within specified directories" do
-    run_generator %w(-v sessions registrations)
+    run_generator %w(-v sessions password_registrations)
     assert_file "app/views/devise/sessions/new.html.erb"
-    assert_file "app/views/devise/registrations/new.html.erb"
-    assert_file "app/views/devise/registrations/edit.html.erb"
+    assert_file "app/views/devise/password_registrations/new.html.erb"
+    assert_file "app/views/devise/password_registrations/edit.html.erb"
     assert_no_file "app/views/devise/confirmations/new.html.erb"
     assert_no_file "app/views/devise/mailer/confirmation_instructions.html.erb"
   end
@@ -65,8 +65,8 @@ class ViewsGeneratorTest < Rails::Generators::TestCase
   end
 
   test "Assert specified directories with simple form" do
-    run_generator %w(-v registrations -b simple_form_for)
-    assert_file "app/views/devise/registrations/new.html.erb", /simple_form_for/
+    run_generator %w(-v password_registrations -b simple_form_for)
+    assert_file "app/views/devise/password_registrations/new.html.erb", /simple_form_for/
     assert_no_file "app/views/devise/confirmations/new.html.erb"
     end
 
@@ -87,8 +87,8 @@ class ViewsGeneratorTest < Rails::Generators::TestCase
     assert_file "app/views/#{scope}/mailer/unlock_instructions.#{mail_template_engine}"
     assert_file "app/views/#{scope}/passwords/edit.html.erb"
     assert_file "app/views/#{scope}/passwords/new.html.erb"
-    assert_file "app/views/#{scope}/registrations/new.html.erb"
-    assert_file "app/views/#{scope}/registrations/edit.html.erb"
+    assert_file "app/views/#{scope}/password_registrations/new.html.erb"
+    assert_file "app/views/#{scope}/password_registrations/edit.html.erb"
     assert_file "app/views/#{scope}/sessions/new.html.erb"
     assert_file "app/views/#{scope}/shared/_links.html.erb"
     assert_file "app/views/#{scope}/shared/_error_messages.html.erb"
@@ -102,7 +102,7 @@ class ViewsGeneratorTest < Rails::Generators::TestCase
     assert_file "app/views/#{scope}/passwords/edit.html.erb", link
     assert_file "app/views/#{scope}/passwords/new.html.erb", link
     assert_file "app/views/#{scope}/confirmations/new.html.erb", link
-    assert_file "app/views/#{scope}/registrations/new.html.erb", link
+    assert_file "app/views/#{scope}/password_registrations/new.html.erb", link
     assert_file "app/views/#{scope}/sessions/new.html.erb", link
     assert_file "app/views/#{scope}/unlocks/new.html.erb", link
   end
@@ -114,8 +114,8 @@ class ViewsGeneratorTest < Rails::Generators::TestCase
     assert_file "app/views/#{scope}/passwords/edit.html.erb", link
     assert_file "app/views/#{scope}/passwords/new.html.erb", link
     assert_file "app/views/#{scope}/confirmations/new.html.erb", link
-    assert_file "app/views/#{scope}/registrations/new.html.erb", link
-    assert_file "app/views/#{scope}/registrations/edit.html.erb", link
+    assert_file "app/views/#{scope}/password_registrations/new.html.erb", link
+    assert_file "app/views/#{scope}/password_registrations/edit.html.erb", link
     assert_file "app/views/#{scope}/unlocks/new.html.erb", link
   end
 end

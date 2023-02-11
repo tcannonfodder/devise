@@ -111,7 +111,7 @@ Devise.setup do |config|
   # won't boot properly.
   # config.reload_routes = true
 
-  # ==> Configuration for :database_authenticatable
+  # ==> Configuration for :database_password_authenticatable
   # For bcrypt, this is the cost for hashing the password and defaults to 12. If
   # using other algorithms, it sets how many times you want the password to be hashed.
   # The number of stretches used for generating the hashed password are stored
@@ -216,7 +216,7 @@ Devise.setup do |config|
   # Warn on the last attempt before the account is locked.
   # config.last_attempt_warning = true
 
-  # ==> Configuration for :recoverable
+  # ==> Configuration for :password_recoverable
   #
   # Defines which key will be used when recovering the password for an account
   # config.reset_password_keys = [:email]

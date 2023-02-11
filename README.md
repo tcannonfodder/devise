@@ -19,7 +19,7 @@ It's composed of 10 modules:
 * [Rememberable](http://www.rubydoc.info/github/heartcombo/devise/main/Devise/Models/Rememberable): manages generating and clearing a token for remembering the user from a saved cookie.
 * [Trackable](http://www.rubydoc.info/github/heartcombo/devise/main/Devise/Models/Trackable): tracks sign in count, timestamps and IP address.
 * [Timeoutable](http://www.rubydoc.info/github/heartcombo/devise/main/Devise/Models/Timeoutable): expires sessions that have not been active in a specified period of time.
-* [Validatable](http://www.rubydoc.info/github/heartcombo/devise/main/Devise/Models/Validatable): provides validations of email and password. It's optional and can be customized, so you're able to define your own validations.
+* [PasswordValidatable](http://www.rubydoc.info/github/heartcombo/devise/main/Devise/Models/PasswordValidatable): provides validations of email and password. It's optional and can be customized, so you're able to define your own validations.
 * [Lockable](http://www.rubydoc.info/github/heartcombo/devise/main/Devise/Models/Lockable): locks an account after a specified number of failed sign-in attempts. Can unlock via email or after a specified time period.
 
 ## Table of Contents
@@ -264,7 +264,7 @@ member_session
 The Devise method in your models also accepts some options to configure its modules. For example, you can choose the cost of the hashing algorithm with:
 
 ```ruby
-devise :database_authenticatable, :registerable, :confirmable, :recoverable, stretches: 13
+devise :database_password_authenticatable, :registerable, :confirmable, :password_recoverable, stretches: 13
 ```
 
 Besides `:stretches`, you can define `:pepper`, `:encryptor`, `:confirm_within`, `:remember_for`, `:timeout_in`, `:unlock_in` among other options. For more details, see the initializer file that was created when you invoked the "devise:install" generator described above. This file is usually located at `/config/initializers/devise.rb`.
@@ -280,8 +280,8 @@ When you customize your own views, you may end up adding new attributes to forms
 There are just three actions in Devise that allow any set of parameters to be passed down to the model, therefore requiring sanitization. Their names and default permitted parameters are:
 
 * `sign_in` (`Devise::SessionsController#create`) - Permits only the authentication keys (like `email`)
-* `sign_up` (`Devise::RegistrationsController#create`) - Permits authentication keys plus `password` and `password_confirmation`
-* `account_update` (`Devise::RegistrationsController#update`) - Permits authentication keys plus `password`, `password_confirmation` and `current_password`
+* `sign_up` (`Devise::PasswordRegistrationsController#create`) - Permits authentication keys plus `password` and `password_confirmation`
+* `account_update` (`Devise::PasswordRegistrationsController#update`) - Permits authentication keys plus `password`, `password_confirmation` and `current_password`
 
 In case you want to permit additional parameters (the lazy way™), you can do so using a simple before action in your `ApplicationController`:
 
@@ -292,7 +292,7 @@ class ApplicationController < ActionController::Base
   protected
 
   def configure_permitted_parameters
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:username])
+    devise_password_parameter_sanitizer.permit(:sign_up, keys: [:username])
   end
 end
 ```
@@ -306,7 +306,7 @@ class ApplicationController < ActionController::Base
   protected
 
   def configure_permitted_parameters
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:first_name, :last_name, address_attributes: [:country, :state, :city, :area, :postal_code]])
+    devise_password_parameter_sanitizer.permit(:sign_up, keys: [:first_name, :last_name, address_attributes: [:country, :state, :city, :area, :postal_code]])
   end
 end
 ```
@@ -317,7 +317,7 @@ To permit simple scalar values for username and email, use this
 
 ```ruby
 def configure_permitted_parameters
-  devise_parameter_sanitizer.permit(:sign_in) do |user_params|
+  devise_password_parameter_sanitizer.permit(:sign_in) do |user_params|
     user_params.permit(:username, :email)
   end
 end
@@ -327,7 +327,7 @@ If you have some checkboxes that express the roles a user may take on registrati
 
 ```ruby
 def configure_permitted_parameters
-  devise_parameter_sanitizer.permit(:sign_up) do |user_params|
+  devise_password_parameter_sanitizer.permit(:sign_up) do |user_params|
     user_params.permit({ roles: [] }, :email, :password, :password_confirmation)
   end
 end
@@ -336,10 +336,10 @@ For the list of permitted scalars, and how to declare permitted keys in nested h
 
 https://github.com/rails/strong_parameters#nested-parameters
 
-If you have multiple Devise models, you may want to set up a different parameter sanitizer per model. In this case, we recommend inheriting from `Devise::ParameterSanitizer` and adding your own logic:
+If you have multiple Devise models, you may want to set up a different parameter sanitizer per model. In this case, we recommend inheriting from `Devise::PasswordParameterSanitizer` and adding your own logic:
 
 ```ruby
-class User::ParameterSanitizer < Devise::ParameterSanitizer
+class User::PasswordParameterSanitizer < Devise::PasswordParameterSanitizer
   def initialize(*)
     super
     permit(:sign_up, keys: [:username, :email])
@@ -353,9 +353,9 @@ And then configure your controllers to use it:
 class ApplicationController < ActionController::Base
   protected
 
-  def devise_parameter_sanitizer
+  def devise_password_parameter_sanitizer
     if resource_class == User
-      User::ParameterSanitizer.new(User, :user, params)
+      User::PasswordParameterSanitizer.new(User, :user, params)
     else
       super # Use the default one
     end
@@ -647,7 +647,7 @@ create_table :admins do |t|
 end
 
 # Inside your Admin model
-devise :database_authenticatable, :timeoutable
+devise :database_password_authenticatable, :timeoutable
 
 # Inside your routes
 devise_for :admins

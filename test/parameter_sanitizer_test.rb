@@ -1,12 +1,12 @@
 # frozen_string_literal: true
 
 require 'test_helper'
-require 'devise/parameter_sanitizer'
+require 'devise/password_parameter_sanitizer'
 
-class ParameterSanitizerTest < ActiveSupport::TestCase
+class PasswordParameterSanitizerTest < ActiveSupport::TestCase
   def sanitizer(params)
     params = ActionController::Parameters.new(params)
-    Devise::ParameterSanitizer.new(User, :user, params)
+    Devise::PasswordParameterSanitizer.new(User, :user, params)
   end
 
   test 'permits the default parameters for sign in' do

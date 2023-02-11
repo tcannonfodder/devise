@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Custom::RegistrationsController < Devise::RegistrationsController
+class Custom::RegistrationsController < Devise::PasswordRegistrationsController
   def new
     super do |resource|
       @new_block_called = true

@@ -12,7 +12,7 @@ module Devise
     #
     #   * +omniauth_providers+: Which providers are available to this model. It expects an array:
     #
-    #       devise :database_authenticatable, :omniauthable, omniauth_providers: [:twitter]
+    #       devise :database_password_authenticatable, :omniauthable, omniauth_providers: [:twitter]
     #
     module Omniauthable
       extend ActiveSupport::Concern

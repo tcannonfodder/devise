@@ -3,7 +3,7 @@
 
 require 'test_helper'
 
-class ValidatableTest < ActiveSupport::TestCase
+class PasswordValidatableTest < ActiveSupport::TestCase
   test 'should require email to be set' do
     user = new_user(email: nil)
     assert user.invalid?
@@ -111,11 +111,11 @@ class ValidatableTest < ActiveSupport::TestCase
 
   test 'should not be included in objects with invalid API' do
     assert_raise RuntimeError do
-      Class.new.send :include, Devise::Models::Validatable
+      Class.new.send :include, Devise::Models::PasswordValidatable
     end
   end
 
   test 'required_fields should be an empty array' do
-    assert_equal [], Devise::Models::Validatable.required_fields(User)
+    assert_equal [], Devise::Models::PasswordValidatable.required_fields(User)
   end
 end
